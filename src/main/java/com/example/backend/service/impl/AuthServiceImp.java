@@ -1,3 +1,43 @@
+package com.example.backend.service.impl;
+
+import com.example.backend.dto.SignupRequest;
+import com.example.backend.entity.User;
+import com.example.backend.repository.UserRepository;
+import com.example.backend.service.AuthService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class AuthServiceImp implements AuthService {
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Override
+    public void signup(SignupRequest request) {
+
+        User existingUser = userRepository.findByEmail(request.getEmail());
+
+        if(existingUser != null) {
+            throw new RuntimeException("Email already registered");
+        }
+
+        User user = new User();
+        user.setName(request.getName());
+        user.setEmail(request.getEmail());
+        user.setPassword(passwordEncoder.encode(request.getPassword()));
+
+        userRepository.save(user);
+
+    }
+}
+
+
+/*
 1️⃣ Package Declaration
 package com.example.usermanagement.service.impl;
 
@@ -241,3 +281,24 @@ DTO → Entity conversion
 Repository save
 
 If you want, the next step is Controller, which connects React frontend → Spring Boot API. This is where your signup endpoint is created.
+*/
+
+
+/*
+Step 1: - Create a interface AuthService
+
+Step 2: - implemet the signup method
+
+Step 3:- Create a package which implements this interface name AuthImplements
+
+Step 4:- Create a class SignupImplementAuth
+
+Step 5:- Implement with AuthService and mention it with @Service which creates service bean
+
+Step 6:- Get userRepository from Repository store in private variable
+         userRepository object, we are injecting into the AuthAerviceImp1
+
+Step 7:- implement the interface methods which is signup
+Step 8:- Create a user instance using User Entity
+Step 9:- save it in database using userRepository.save
+*/
