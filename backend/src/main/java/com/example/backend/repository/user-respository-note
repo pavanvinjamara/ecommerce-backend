@@ -1,0 +1,24 @@
+The repository layer is responsible for communicating with the database.
+Spring Boot uses Spring Data JPA to automatically generate database queries.
+
+Step 1:- create package repository
+
+Step 2:- create interface UserRepository
+            why interface only ? why not class ?
+            Interface allows Spring to:
+            generate implementation automatically
+            add database logic dynamically
+            keep code clean
+            Spring Data repositories are defined as interfaces because Spring automatically generates their implementation at runtime using proxy classes.
+
+Step 3:- extend with an interface JpaRepository
+         which accepts the Two thing  JpaRepository<EntityClass, PrimaryKeyType>
+         3️⃣ What Methods It Provides
+         By extending JpaRepository, you automatically get many methods.
+         Save Data
+         userRepository.save(user);
+
+         SQL executed internally:
+         INSERT INTO users (...)
+
+         JpaRepository is an interface provided by Spring Data JPA that gives you ready-made database operations for your entity.

@@ -1,0 +1,20 @@
+Step 1:- Create a class SecurityConfig
+         where we can do hashing using SpringSecurity in that we use BCryptPasswordEncoder
+         above the class give annotation @Configuration
+
+Step 2:- Create a passwordEncoder method using BCryptPasswordEncoder
+         which returns instance of BCryptPasswordEncoder
+         above that give @Bean annotation
+
+Step 3:- Using this in service
+
+@Bean
+public BCryptPasswordEncoder passwordEncoder()
+
+Spring creates a singleton bean for password encryption.
+
+Internally Spring does:
+
+BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+And stores it in the Spring container.

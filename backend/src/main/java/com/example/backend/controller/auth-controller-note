@@ -1,0 +1,11 @@
+Step 1:- Create a class AuthController
+         above the class mention the annotations
+         @RestController This class handles REST API requests.
+                         It automatically returns JSON or text response.
+         @RequestMapping("/")  All APIs inside this controller start with this
+
+Step 2:- get the authService to perform business logic
+         @Autowired
+         private AuthService authService;
+
+         Controller needs service layer to perform business logic.

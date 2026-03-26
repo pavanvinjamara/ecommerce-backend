@@ -1,0 +1,16 @@
+Step 1: - Create a interface AuthService
+
+Step 2: - implemet the signup method
+
+Step 3:- Create a package which implements this interface name AuthImplements
+
+Step 4:- Create a class SignupImplementAuth
+
+Step 5:- Implement with AuthService and mention it with @Service which creates service bean
+
+Step 6:- Get userRepository from Repository store in private variable
+         userRepository object, we are injecting into the AuthAerviceImp1
+
+Step 7:- implement the interface methods which is signup
+Step 8:- Create a user instance using User Entity
+Step 9:- save it in database using userRepository.save
