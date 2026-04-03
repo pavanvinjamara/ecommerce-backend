@@ -1,0 +1,154 @@
+-- USERS (merged with profile)
+CREATE TABLE users(
+	  id SERIAL PRIMARY KEY,
+
+	  email VARCHAR(255) NOT NULL UNIQUE,
+	  password TEXT NOT NULL,
+
+	  first_name VARCHAR(100),
+	  last_name VARCHAR(100),
+	  avatar_url TEXT,
+	  dob DATE,
+	  gender VARCHAR(10),
+
+	  is_active BOOLEAN DEFAULT TRUE,
+	  is_email_verified BOOLEAN DEFAULT FALSE,
+
+	  is_deleted BOOLEAN DEFAULT FALSE,
+	  deleted_at TIMESTAMP,
+
+	  created_at TIMESTAMP DEFAULT now(),
+	  updated_at TIMESTAMP DEFAULT now()
+);
+
+-- ADDRESSES
+CREATE TABLE addresses(
+	id SERIAL PRIMARY KEY,
+	user_id INT,
+
+	line1 TEXT,
+	line2 TEXT,
+	city VARCHAR(20),
+	state VARCHAR(20),
+	pincode VARCHAR(20),
+
+	is_default BOOLEAN DEFAULT false,
+
+	created_at TIMESTAMP DEFAULT now(),
+	updated_at TIMESTAMP DEFAULT now()
+);
+
+-- CATEGORIES
+CREATE TABLE categories(
+	id SERIAL PRIMARY KEY,
+	name VARCHAR(20),
+	parent_id INT,
+
+	created_at TIMESTAMP DEFAULT now(),
+	updated_at TIMESTAMP DEFAULT now()
+);
+
+-- PRODUCTS
+CREATE TABLE products(
+	 id SERIAL PRIMARY KEY,
+
+	 name VARCHAR(255),
+	 description TEXT,
+	 category_id INT,
+	 created_by INT,
+
+	 price NUMERIC(10,2),
+	 stock INT,
+	 sku VARCHAR(100) UNIQUE,
+
+	 is_active BOOLEAN DEFAULT TRUE,
+     is_best_seller BOOLEAN DEFAULT FALSE,
+
+	 created_at TIMESTAMP DEFAULT now(),
+	 updated_at TIMESTAMP DEFAULT now()
+);
+
+-- PRODUCT IMAGES
+CREATE TABLE product_images(
+	id SERIAL PRIMARY KEY,
+	product_id INT,
+
+	image_url TEXT,
+	is_primary BOOLEAN DEFAULT FALSE,
+    created_at TIMESTAMP DEFAULT now(),
+    updated_at TIMESTAMP DEFAULT now()
+);
+
+-- BANNER IMAGES
+CREATE TABLE banner_images(
+    id SERIAL PRIMARY KEY,
+    image_url TEXT,
+    redirect_url TEXT,
+    rank INT
+)
+
+-- CART
+CREATE TABLE cart_items(
+	id SERIAL PRIMARY KEY,
+	user_id INT,
+	product_id INT,
+
+	quantity INT,
+
+	created_at TIMESTAMP DEFAULT now(),
+	updated_at TIMESTAMP DEFAULT now()
+);
+
+-- ORDERS
+CREATE TABLE orders(
+	id SERIAL PRIMARY KEY,
+
+	user_id INT,
+	address_id INT,
+
+	status VARCHAR(20),
+	payment_status VARCHAR(50),
+	total_amount NUMERIC(10,2),
+
+	created_at TIMESTAMP DEFAULT now(),
+	updated_at TIMESTAMP DEFAULT now()
+);
+
+-- ORDER ITEMS
+CREATE TABLE order_items(
+	id SERIAL PRIMARY KEY,
+
+	order_id INT,
+	product_id INT,
+
+	quantity INT,
+	price NUMERIC(10,2),
+
+	created_at TIMESTAMP DEFAULT now(),
+	updated_at TIMESTAMP DEFAULT now()
+);
+
+-- PAYMENTS
+CREATE TABLE payments(
+	 id SERIAL PRIMARY KEY,
+
+	 order_id INT,
+	 method VARCHAR(50),
+	 status VARCHAR(50),
+	 transaction_id VARCHAR(255),
+
+	 created_at TIMESTAMP DEFAULT now()
+);
+
+-- REVIEWS
+CREATE TABLE reviews (
+	id SERIAL PRIMARY KEY,
+	user_id INT,
+	product_id INT,
+
+	rating INT,
+	comment VARCHAR(255),
+
+	created_at TIMESTAMP DEFAULT now(),
+	updated_at TIMESTAMP DEFAULT now()
+);

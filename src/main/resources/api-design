@@ -1,0 +1,215 @@
+----- homepage ----
+Get Request
+
+response = {
+	categories :{
+		title: "",
+		data: [
+			{
+				image_url: "",
+				redirect_url: "",
+				id: 1,
+				rank: "",  -- it for most visited category
+			},{...}
+		],
+	},
+
+	banner_slider: {
+		title: "",
+		data: [
+			{
+				image_url: "",
+				redirect_url: "",
+				id: 1,
+				rank: 1,
+
+			},
+			{...}
+		],
+	},
+
+	customer_favourite:{
+            title: "",
+            data: [{
+				image_url: "",
+				offer_price: 12.34 ,  --FLOAT
+				actual_price: 15.88,
+				id: 1,
+				redirect_url:
+			},{...}
+		],
+	},
+
+	shop_by_category: [
+		{
+			image_url: "",
+			title: "",
+			sub_title: "",
+			desc:"",
+			redirect_url: "",
+			rank: "",
+			id: 1
+		},{...}
+	],
+
+	watch_and_buy:{
+		title: "",
+		data: [
+			{
+				video_url: "",
+				image_url: "",
+				redirect_url: "",
+				price: "",
+				rank:1,
+				id:1,
+
+			},
+			{...}
+		],
+	},
+
+	pickle_and_oil: {
+		title: "",
+		data: [
+			{
+				image_url: "",
+                price: 12.34   --FLOAT
+                id: 1,
+                redirect_url:
+			},{ ... }
+		],
+	},
+
+	about_us:{
+		title: "",
+		image_url: "",
+		para: ["","","",],
+
+	},
+
+	why_choose_us: {
+		title: "",
+		data: [
+			{
+				image_url: "",
+				title: "",
+				desc: "",
+				id:""
+			},
+			{
+                image_url: "",
+                title: "",
+                desc: "",
+                id:""
+            },
+            {
+                image_url: "",
+                title: "",
+                desc: "",
+                id:""
+            }
+		],
+	},
+
+	customer_reviews: {
+		title: "",
+		data:[
+			{
+				rating: 5,
+				id:1,
+				user_name:"",
+				review:"",
+			}
+		]
+	},
+
+	faq:{
+		title: "",
+		data:[
+			{
+				question: "",
+				answer:"",
+				id:""
+			},
+			{
+			},
+		],
+	},
+}
+
+------ Product
+
+https://vaaradhifarms.com/collections/honey/products/natural-honey?variant=45050134200607
+https://vaaradhifarms.com/products/wild-honey
+GET request product?id=xxxxxxxx query param
+
+response = {
+	product_details :{
+			id:"",
+			title:"",
+			desc: "",
+			actual_price: 22.34,
+			offer_price: 12.24,
+			quantity: 1,
+
+	},
+	similar_products:{
+	   data: [
+		   {
+                image_url: "",
+                offer_price: 12.34 ,  --FLOAT
+                actual_price: 15.88,
+                id: 1,
+                redirect_url:"",
+                quantity: "",
+           },{...}
+       ]
+	}
+	product_reviews:{
+		overall_product_rating: 4.0,
+
+		reviews: [
+				{
+					user_name: "",
+					review: "",
+					out_of: ""
+				}
+		],
+	},
+	faq:{
+        title: "",
+        data:[
+            {
+                question: "",
+                answer:"",
+                id:""
+            },
+            {
+            },
+        ],
+    },
+}
+
+
+
+------- category
+	response = {
+		title: "",
+		data: [
+			{
+				title: "",
+				image_url: "",
+				redirect_url: "",
+				rank: ""
+			},{...}
+		]
+	}
+
+------ show all
+
+
+------- cart add/remove
+
+----- product review
+
+------purchase
