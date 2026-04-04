@@ -1,3 +1,21 @@
+//Write APIs in below format:
+GET /api/v1/users
+headers:
+params:
+body:
+{
+  "email": "john.doe@example.com"
+}
+response:
+{
+  "username": "johndoe",
+  "email": "john.doe@example.com",
+  "password": "P@ssw0rd123",
+  "fullName": "John Doe",
+  "phoneNumber": "+1234567890"
+}
+
+
 ----- homepage ----
 Get Request
 
@@ -29,11 +47,12 @@ response = {
 	},
 
 	customer_favourite:{
+		//TODO:"New Arrivals" is also present in "customer_favourite" section. This should have "New Arrivals" also in response
             title: "",
             data: [{
 				image_url: "",
 				offer_price: 12.34 ,  --FLOAT
-				actual_price: 15.88,
+				actual_price: 15.88, //TODO:We have only 1 price col in product table. How can we add 2 prices in response.?
 				id: 1,
 				redirect_url:
 			},{...}
@@ -45,7 +64,7 @@ response = {
 			image_url: "",
 			title: "",
 			sub_title: "",
-			desc:"",
+			desc:"", //TODO:desc is not being shown in UI in homepage, so not needed in API response
 			redirect_url: "",
 			rank: "",
 			id: 1
@@ -55,6 +74,19 @@ response = {
 	watch_and_buy:{
 		title: "",
 		data: [
+			//TODO:object structure can be like below
+			// {
+			// 	product:{
+			// 		title:"asdf",
+			// 		video_url: "",//on clicking video, a popup is coming & sometimes 2 products are coming. Either we have to include that product list here or we have to create new API which will return those product list. How we are going to store "these product list" in db?
+			// 		redirect_url: "",//this is not needed as browser-url in UI is not changing
+			// 		price: ""
+			// 	},
+			// 	image_url: "",
+			// 	rank:1,
+			// 	id:1,
+			// }
+			//TODO:In which table above object data is being stored?
 			{
 				video_url: "",
 				image_url: "",
@@ -72,6 +104,8 @@ response = {
 		title: "",
 		data: [
 			{
+				//TODO:rating field is missing in this & in all other sections' product objects as well.
+				title:"", //is missing
 				image_url: "",
                 price: 12.34   --FLOAT
                 id: 1,
@@ -79,11 +113,11 @@ response = {
 			},{ ... }
 		],
 	},
-
+//TODO: "Shop Our Other Collections" section data is missing in API response. If section is not needed then ignore this comment
 	about_us:{
 		title: "",
 		image_url: "",
-		para: ["","","",],
+		desc: ["","","",],//TODO: single para(within itself new lines will be present) should be returned in response.
 
 	},
 
@@ -160,19 +194,22 @@ response = {
                 offer_price: 12.34 ,  --FLOAT
                 actual_price: 15.88,
                 id: 1,
-                redirect_url:"",
+                redirect_url:"",//TODO:Its better name this field as seo_url
                 quantity: "",
            },{...}
        ]
-	}
+	},
 	product_reviews:{
 		overall_product_rating: 4.0,
-
+		//in UI:"Based on 704 reviews" review count is also present. review count for each no. of stars is present.
+//TODO:pagination is present in UI, think whether we have to do pagination in Frontend or Backend for reviews section
 		reviews: [
 				{
 					user_name: "",
+					title:"",//field is missing
+					date:""//field is missing
 					review: "",
-					out_of: ""
+					out_of: ""//better call this field user_rating
 				}
 		],
 	},
