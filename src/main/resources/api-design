@@ -54,7 +54,8 @@ response = {
 				offer_price: 12.34 ,  --FLOAT
 				actual_price: 15.88, //TODO:We have only 1 price col in product table. How can we add 2 prices in response.?
 				id: 1,
-				seo_url:
+				seo_url:,
+				rating: ,
 			},{...}
 		],
 	},
@@ -185,6 +186,7 @@ response = {
 			actual_price: 22.34,
 			offer_price: 12.24,
 			quantity: 1,
+			rating: ,
 
 	},
 	similar_products:{
@@ -196,6 +198,7 @@ response = {
                 id: 1,
                 seo_url:"",//TODO:Its better name this field as seo_url
                 quantity: "",
+                rating: '',
            },{...}
        ]
 	},
@@ -244,10 +247,192 @@ response = {
 	}
 
 ------ show all
+get filter_options
+response = {
+
+}
+
+get sort_options
+response = {
+
+}
+------------
+Post request
+{
+}
+
+filter applied
+{
+	serach:"",
+	sort_by: "",
+	filter:{},
+}
+
+response:{
+	title: "",
+	data: [
+            {
+                //TODO:rating field is missing in this & in all other sections' product objects as well.
+                title:"", //is missing
+                image_url: "",
+                price: 12.34   --FLOAT
+                id: 1,
+                seo_url:,
+                rating: '',
+            },{ ... }
+    ],
+}
 
 
-------- cart add/remove
 
------ product review
+--------------- cart add/remove/ delete
+add post method
+param ={
+	id: "",
+}
+response={
+    msg: "",
+}
 
-------purchase
+delete method
+param = {
+	id: ''
+}
+
+response = {
+	msg : "",
+}
+
+
+------------------ product review
+add/edit post method
+add
+param = {
+	product_id : '',
+	review: "",
+	user_id: "",
+	rating: '',
+}
+
+response = {
+	msg: "add review"
+}
+
+edit
+put method
+param = {
+	product_id : '',
+    review: "",
+    user_id: "",
+    rating: '',
+}
+response = {
+	msg: ""
+}
+
+delete
+delete method
+param = {
+	product_id : '',
+    user_id: "",
+}
+response= {
+	msg: "",
+}
+------------------------order purchase/cancel
+ address post
+param = {
+	user_id : ""
+}
+response= {
+	data: [{
+	line1: "",
+	line2: "",
+	state: "",
+	city: "",
+	pin code: "",
+	}, {...}]
+}
+post method
+param = {
+	products:['product
+	_id'],
+	user_id: "",
+	payment_method: "",
+	address: "",
+	card_details: {
+		upi_id: "",
+		phonenumber: "",
+		||
+		card_no: "",
+		doe: "",
+		cvv:"",
+
+	}, // if it is online
+},
+
+create transaction_id
+
+push items into order_items
+
+// order-status ---/ get/update
+post method
+param ={
+order_id: "",
+}
+
+response ={
+order_id: "",
+order_status:"",
+}
+
+update
+put method
+param ={
+	order_id: "",
+	order_status: "",
+	user_id:"",
+}
+response={
+	msg: "",
+}
+
+
+----- login
+
+Post method
+param: {
+	email:"",
+	password:"",
+	otp:"",
+}
+|| param:{
+	phone_number: "",
+	otp:"",
+}
+
+response ={
+	msg: "",
+}
+redirect to home
+ ----- profile
+ Post method
+ param ={
+  first_name:"",
+  avatar_url:"",
+  ....
+ }
+
+ response={
+  msg: "",
+ }
+
+ ----- Contact us
+
+ POSt Method
+
+ param: {
+    name:"",
+    email: "",
+    message: "",
+ }
