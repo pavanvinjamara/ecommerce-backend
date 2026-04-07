@@ -25,7 +25,7 @@ response = {
 		data: [
 			{
 				image_url: "",
-				redirect_url: "",
+				seo_url: "",
 				id: 1,
 				rank: "",  -- it for most visited category
 			},{...}
@@ -37,7 +37,7 @@ response = {
 		data: [
 			{
 				image_url: "",
-				redirect_url: "",
+				seo_url: "",
 				id: 1,
 				rank: 1,
 
@@ -54,7 +54,7 @@ response = {
 				offer_price: 12.34 ,  --FLOAT
 				actual_price: 15.88, //TODO:We have only 1 price col in product table. How can we add 2 prices in response.?
 				id: 1,
-				redirect_url:
+				seo_url:
 			},{...}
 		],
 	},
@@ -64,8 +64,7 @@ response = {
 			image_url: "",
 			title: "",
 			sub_title: "",
-			desc:"", //TODO:desc is not being shown in UI in homepage, so not needed in API response
-			redirect_url: "",
+			seo_url: "",
 			rank: "",
 			id: 1
 		},{...}
@@ -74,23 +73,24 @@ response = {
 	watch_and_buy:{
 		title: "",
 		data: [
-			//TODO:object structure can be like below
+			// TODO:object structure can be like below
 			// {
 			// 	product:{
 			// 		title:"asdf",
 			// 		video_url: "",//on clicking video, a popup is coming & sometimes 2 products are coming. Either we have to include that product list here or we have to create new API which will return those product list. How we are going to store "these product list" in db?
-			// 		redirect_url: "",//this is not needed as browser-url in UI is not changing
+			// 		seo_url: "",//this is not needed as browser-url in UI is not changing
 			// 		price: ""
 			// 	},
 			// 	image_url: "",
 			// 	rank:1,
 			// 	id:1,
 			// }
-			//TODO:In which table above object data is being stored?
+
+			// TODO:In which table above object data is being stored ?
 			{
 				video_url: "",
 				image_url: "",
-				redirect_url: "",
+				seo_url: "",
 				price: "",
 				rank:1,
 				id:1,
@@ -109,7 +109,7 @@ response = {
 				image_url: "",
                 price: 12.34   --FLOAT
                 id: 1,
-                redirect_url:
+                seo_url:
 			},{ ... }
 		],
 	},
@@ -117,7 +117,7 @@ response = {
 	about_us:{
 		title: "",
 		image_url: "",
-		desc: ["","","",],//TODO: single para(within itself new lines will be present) should be returned in response.
+		desc: "",//TODO: single para(within itself new lines will be present) should be returned in response.
 
 	},
 
@@ -194,7 +194,7 @@ response = {
                 offer_price: 12.34 ,  --FLOAT
                 actual_price: 15.88,
                 id: 1,
-                redirect_url:"",//TODO:Its better name this field as seo_url
+                seo_url:"",//TODO:Its better name this field as seo_url
                 quantity: "",
            },{...}
        ]
@@ -207,8 +207,9 @@ response = {
 				{
 					user_name: "",
 					title:"",//field is missing
-					date:""//field is missing
+					date:"",//field is missing
 					review: "",
+					user_rating: "",
 					out_of: ""//better call this field user_rating
 				}
 		],
@@ -236,7 +237,7 @@ response = {
 			{
 				title: "",
 				image_url: "",
-				redirect_url: "",
+				seo_url: "",
 				rank: ""
 			},{...}
 		]

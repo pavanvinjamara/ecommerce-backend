@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94cf521f-2fce-426b-9861-587280f9534e" name="Changes" comment="final confirm commit" />
+    <list default="true" id="94cf521f-2fce-426b-9861-587280f9534e" name="Changes" comment="resolve conflict">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/api-design" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/api-design" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1774705020242</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="resolve conflict">
+      <option name="closed" value="true" />
+      <created>1775194230076</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775194230076</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +152,7 @@
     <MESSAGE value="added backend" />
     <MESSAGE value="added gitignore rules" />
     <MESSAGE value="final confirm commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="final confirm commit" />
+    <MESSAGE value="resolve conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve conflict" />
   </component>
 </project>
