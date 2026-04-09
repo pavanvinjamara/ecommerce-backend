@@ -1,0 +1,11 @@
+{
+  "sections": {},
+  "apiEndpoints": [
+	{
+	  "method": "GET",
+	  "path": "/api/v1/contact",
+	  "request": {},
+	  "response": {}
+	}
+  ]
+}

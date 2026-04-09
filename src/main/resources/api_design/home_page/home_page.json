@@ -1,0 +1,101 @@
+{
+  "sections": [
+    "best_selling_products",
+    "new_arrivals",
+    "shop_by_category",
+    "featured_brands",
+    "about_us",
+    "customer_testimonials",
+    "faqs"
+  ],
+    "apiEndpoints": [
+     {
+        "method": "GET",
+        "path": "/api/v1/home",
+        "request": {},  
+        "response": {
+    "best_selling_products": [
+    {
+        "product_id": 1,
+        "product_name": "Product A",
+        "product_price": 29.99,
+        "product_image_url": "https://example.com/images/product_a.jpg"
+    },
+    {
+        "product_id": 2,
+        "product_name": "Product B",
+        "product_price": 49.99,
+        "product_image_url": "https://example.com/images/product_b.jpg"
+    }
+    ],
+    "new_arrivals": [
+    {
+        "product_id": 3,
+        "product_name": "Product C",
+        "product_price": 19.99,
+        "product_image_url": "https://example.com/images/product_c.jpg"
+    },
+    {
+        "product_id": 4,
+        "product_name": "Product D",
+        "product_price": 39.99,
+        "product_image_url": "https://example.com/images/product_d.jpg"
+    }
+    ],
+    "shop_by_category": [
+    {
+        "category_id": 1,
+        "category_name": "Electronics",
+        "category_image_url": "https://example.com/images/electronics.jpg"
+    },
+    {
+        "category_id": 2,
+        "category_name": "Clothing",
+        "category_image_url": "https://example.com/images/clothing.jpg"
+    }
+    ],
+    "featured_brands": [
+    {
+        "brand_id": 1,
+        "brand_name": "Brand A",
+        "brand_logo_url": "https://example.com/images/brand_a.jpg"
+    },
+    {
+        "brand_id": 2,
+        "brand_name": "Brand B",
+        "brand_logo_url": "https://example.com/images/brand_b.jpg"
+    }
+    ],
+    "about_us": {
+
+        "company_name": "E-commerce Inc.",
+        "company_description": "We are a leading e-commerce platform providing a wide range of products to customers worldwide."
+    },
+    "customer_testimonials": [
+        {
+            "testimonial_id": 1,
+            "customer_name": "John Doe",
+            "testimonial_text": "Great service and fast delivery!"
+        },
+        {
+            "testimonial_id": 2,
+            "customer_name": "Jane Smith",
+            "testimonial_text": "Wide selection of products at competitive prices."
+        }
+    ],
+    "faqs": [
+        {
+            "faq_id": 1,
+            "question": "What is your return policy?",
+            "answer": "We offer a 30-day return policy for all items."
+        },
+        {
+            "faq_id": 2,
+            "question": "How long does shipping take?",
+            "answer": "Shipping typically takes 3-5 business days."
+        }
+    ]
+        }
+    }
+    ]
+}
