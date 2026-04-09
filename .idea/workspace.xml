@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="94cf521f-2fce-426b-9861-587280f9534e" name="Changes" comment="Merge branch">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/api-design" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/api-design" afterDir="false" />
-    </list>
+    <list default="true" id="94cf521f-2fce-426b-9861-587280f9534e" name="Changes" comment="Merge branch" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,12 +19,12 @@
     &quot;assignee&quot;: &quot;pavanvinjamara&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/pavanvinjamara/ecommerce-backend.git&quot;,
-    &quot;accountId&quot;: &quot;7072be83-0e9d-40a8-8a8e-3e515d9aca90&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/pavanvinjamara/ecommerce-backend.git",
+    "accountId": "d777e4d1-48d4-4881-8e74-faf64863cd97"
   }
-}</component>
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
