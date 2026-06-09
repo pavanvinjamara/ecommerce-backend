@@ -172,3 +172,12 @@ CREATE TABLE reviews (
 	created_at TIMESTAMP DEFAULT now(),
 	updated_at TIMESTAMP DEFAULT now()
 );
+
+-- REFRESH TOKENS
+CREATE TABLE refresh_tokens (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,     -- keep thisS
+    token TEXT NOT NULL,
+    expiry_date TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT NOW()
+);

@@ -1,9 +1,14 @@
 package com.example.backend.service.impl;
 
+import com.example.backend.dto.LoginRequest;
+import com.example.backend.dto.LoginResponse;
 import com.example.backend.dto.SignupRequest;
+import com.example.backend.entity.RefreshToken;
 import com.example.backend.entity.User;
 import com.example.backend.repository.UserRepository;
+import com.example.backend.security.JwtUtil;
 import com.example.backend.service.AuthService;
+import com.example.backend.service.RefreshTokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -17,6 +22,25 @@ public class AuthServiceImp implements AuthService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    @Autowired
+    private JwtUtil jwtUtil;
+
+    @Autowired
+    private RefreshTokenService refreshTokenService;
+
+    @Override
+    public LoginResponse login(LoginRequest request) {
+        User user = userRepository.findByEmail(request.getEmail());
+        if (user == null) throw new RuntimeException("User not found");
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword()))
+            throw new RuntimeException("Invalid password");
+
+        String accessToken = jwtUtil.generateToken(user.getEmail());
+        String refreshToken = refreshTokenService.createRefreshToken(user.getId()); // ADD
+
+        return new LoginResponse(user.getId(), user.getEmail(), accessToken, refreshToken);
+    }
+
     @Override
     public void signup(SignupRequest request) {
 
@@ -27,13 +51,32 @@ public class AuthServiceImp implements AuthService {
         }
 
         User user = new User();
-        user.setName(request.getName());
         user.setEmail(request.getEmail());
+//        password hashing here
         user.setPassword(passwordEncoder.encode(request.getPassword()));
 
         userRepository.save(user);
 
     }
+
+    @Override
+    public LoginResponse refresh(String refreshToken) {
+        // 1. Find the stored refresh token
+        RefreshToken stored = refreshTokenService.findByToken(refreshToken)
+                .orElseThrow(() -> new RuntimeException("Invalid refresh token"));
+
+        // 2. Find the user
+        User user = userRepository.findById(stored.getUserId())
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        // 3. Generate new tokens
+        String newAccessToken = jwtUtil.generateToken(user.getEmail());
+        String newRefreshToken = refreshTokenService.createRefreshToken(user.getId());
+
+        return new LoginResponse(user.getId(), user.getEmail(), newAccessToken, newRefreshToken);
+    }
+
+
 }
 
 

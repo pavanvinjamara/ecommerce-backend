@@ -1,0 +1,136 @@
+-- WARNING: This schema is for context only and is not meant to be run.
+-- Table order and constraints may not be valid for execution.
+
+CREATE TABLE public.addresses (
+	id integer NOT NULL DEFAULT nextval('addresses_id_seq'::regclass),
+	user_id integer,
+	line1 text,
+	line2 text,
+	city character varying,
+	state character varying,
+	pincode character varying,
+	is_default boolean DEFAULT false,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	CONSTRAINT addresses_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.banner_images (
+	id integer NOT NULL DEFAULT nextval('banner_images_id_seq'::regclass),
+	image_url text,
+	redirect_url text,
+	rank integer,
+	updated_at timestamp without time zone DEFAULT now(),
+	created_at timestamp without time zone DEFAULT now(),
+	CONSTRAINT banner_images_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.cart_items (
+	id integer NOT NULL DEFAULT nextval('cart_items_id_seq'::regclass),
+	user_id integer,
+	product_id integer,
+	quantity integer,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	CONSTRAINT cart_items_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.categories (
+	id integer NOT NULL DEFAULT nextval('categories_id_seq'::regclass),
+	name character varying,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	CONSTRAINT categories_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.order_items (
+	id integer NOT NULL DEFAULT nextval('order_items_id_seq'::regclass),
+	order_id integer,
+	product_id integer,
+	quantity integer,
+	price numeric,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	CONSTRAINT order_items_pkey PRIMARY KEY (id)
+);
+CREATE TABLE public.orders (
+	id integer NOT NULL DEFAULT nextval('orders_id_seq'::regclass),
+	user_id integer,
+	address_id integer,
+	status USER-DEFINED,
+	payment_status USER-DEFINED,
+	total_amount numeric,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	product_id integer,
+	CONSTRAINT orders_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.payments (
+	id integer NOT NULL DEFAULT nextval('payments_id_seq'::regclass),
+	order_id integer,
+	method USER-DEFINED,
+	transaction_id character varying,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	payment_status USER-DEFINED,
+	CONSTRAINT payments_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.product_images (
+	   id integer NOT NULL DEFAULT nextval('product_images_id_seq'::regclass),
+	   product_id integer,
+	   image_url text,
+	   is_primary boolean DEFAULT false,
+	   created_at timestamp without time zone DEFAULT now(),
+	   updated_at timestamp without time zone DEFAULT now(),
+	   CONSTRAINT product_images_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.products (
+	id integer NOT NULL DEFAULT nextval('products_id_seq'::regclass),
+	name character varying,
+	description text,
+	category_id integer,
+	created_by integer,
+	actual_price real,
+	stock integer,
+	sku character varying UNIQUE,
+	is_active boolean DEFAULT true,
+	is_best_seller boolean DEFAULT false,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	rating real,
+	offer_price real,
+	seo_url text UNIQUE,
+	CONSTRAINT products_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.reviews (
+	id integer NOT NULL DEFAULT nextval('reviews_id_seq'::regclass),
+	user_id integer,
+	product_id integer,
+	rating integer,
+	comment character varying,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	CONSTRAINT reviews_pkey PRIMARY KEY (id)
+);
+
+CREATE TABLE public.users (
+	id integer NOT NULL DEFAULT nextval('users_id_seq'::regclass),
+	email character varying NOT NULL UNIQUE,
+	password text NOT NULL,
+	first_name character varying,
+	last_name character varying,
+	avatar_url text,
+	dob date,
+	gender character varying,
+	is_active boolean DEFAULT true,
+	is_email_verified boolean DEFAULT false,
+	is_deleted boolean DEFAULT false,
+	deleted_at timestamp without time zone,
+	created_at timestamp without time zone DEFAULT now(),
+	updated_at timestamp without time zone DEFAULT now(),
+	CONSTRAINT users_pkey PRIMARY KEY (id)
+);
