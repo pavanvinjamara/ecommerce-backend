@@ -3,12 +3,16 @@ package com.example.backend.controller;
 import com.example.backend.dto.LoginRequest;
 import com.example.backend.dto.LoginResponse;
 import com.example.backend.dto.SignupRequest;
+import com.example.backend.entity.RefreshToken;
+import com.example.backend.entity.User;
 import com.example.backend.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -31,6 +35,11 @@ public class AuthController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody LoginRequest request){
             return authService.login(request);
+    }
+
+    @PostMapping("/refresh")
+    public LoginResponse refresh(@RequestBody Map<String, String> body) {
+        return authService.refresh(body.get("refreshToken")); // ✅ just delegate
     }
 }
 

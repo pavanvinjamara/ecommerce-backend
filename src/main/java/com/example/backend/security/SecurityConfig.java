@@ -3,6 +3,7 @@ package com.example.backend.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 
@@ -45,10 +46,8 @@ public class SecurityConfig {
 
                 // ✅ Authorization rules
                 .authorizeHttpRequests(auth -> auth
-                        // 🔓 Public APIs
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()  // ADD THIS
                         .requestMatchers("/api/auth/**").permitAll()
-
-                        // 🔒 All other APIs require authentication
                         .anyRequest().authenticated()
                 )
 

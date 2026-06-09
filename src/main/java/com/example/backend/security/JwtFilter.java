@@ -21,54 +21,40 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        String path = request.getServletPath();
+        String method = request.getMethod();
+        // Skip JWT check for auth routes and preflight
+        return path.startsWith("/api/auth") || method.equals("OPTIONS");
+    }
+
+    @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain)
             throws ServletException, IOException {
 
-        String path = request.getServletPath();
-
-        // ✅ 1. Skip login & signup APIs
-        if (path.startsWith("/api/auth")) {
-            filterChain.doFilter(request, response);
-            return;
-        }
-
-        // ✅ 2. Get Authorization header
         String authHeader = request.getHeader("Authorization");
 
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
-
             String token = authHeader.substring(7);
-
             try {
-                // ✅ 3. Validate token
                 if (jwtUtil.validateToken(token)) {
-
                     String email = jwtUtil.extractEmail(token);
-
-                    // ✅ 4. Set authentication (important for secured APIs)
                     UsernamePasswordAuthenticationToken authentication =
                             new UsernamePasswordAuthenticationToken(
-                                    email,
-                                    null,
-                                    Collections.emptyList()
-                            );
-
+                                    email, null, Collections.emptyList());
                     SecurityContextHolder.getContext().setAuthentication(authentication);
-
                 } else {
                     response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                     return;
                 }
-
             } catch (Exception e) {
                 response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
                 return;
             }
         }
 
-        // ✅ 5. Continue request
         filterChain.doFilter(request, response);
     }
 }

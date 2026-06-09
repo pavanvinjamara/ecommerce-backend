@@ -7,6 +7,7 @@ import com.example.backend.dto.SignupRequest;
 public interface AuthService {
     void signup(SignupRequest request);
     LoginResponse login(LoginRequest request);
+    LoginResponse refresh(String refreshToken);
 }
 /*
 Step 4️⃣ Create Service Interface
