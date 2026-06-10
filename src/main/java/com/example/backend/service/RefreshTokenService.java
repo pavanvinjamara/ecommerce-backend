@@ -4,6 +4,7 @@ import com.example.backend.entity.RefreshToken;
 import com.example.backend.repository.RefreshTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -15,6 +16,7 @@ public class RefreshTokenService {
     @Autowired
     private RefreshTokenRepository refreshTokenRepository;
 
+    @Transactional
     public String createRefreshToken(Long userId) {
         // Delete old token for this user (one token per user)
         refreshTokenRepository.deleteByUserId(userId);
