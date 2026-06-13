@@ -18,20 +18,22 @@ public class RefreshTokenService {
 
     @Transactional
     public String createRefreshToken(Long userId) {
-        // Delete old token for this user (one token per user)
-        refreshTokenRepository.deleteByUserId(userId);
 
-        RefreshToken refreshToken = new RefreshToken();
+        RefreshToken refreshToken =
+                refreshTokenRepository.findByUserId(userId)
+                        .orElse(new RefreshToken());
+
         refreshToken.setUserId(userId);
-        refreshToken.setToken(UUID.randomUUID().toString()); // random secure string
-        refreshToken.setCreatedAt(LocalDateTime.now());
+        refreshToken.setToken(UUID.randomUUID().toString());
         refreshToken.setUpdatedAt(LocalDateTime.now());
+        refreshToken.setExpiryDate(LocalDateTime.now().plusDays(7));
 
-        refreshToken.setExpiryDate(
-                LocalDateTime.now().plusDays(7)
-        );
+        if (refreshToken.getCreatedAt() == null) {
+            refreshToken.setCreatedAt(LocalDateTime.now());
+        }
 
         refreshTokenRepository.save(refreshToken);
+
         return refreshToken.getToken();
     }
 
